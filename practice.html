@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תרגול משוואות עם מכנה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .exercise {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>תרגול משוואות עם מכנה</h1>
+    <div id="exercises"></div>
+
+    <script>
+        function generateExercises() {
+            const container = document.getElementById('exercises');
+            for (let i = 1; i <= 30; i++) {
+                const num1 = Math.floor(Math.random() * 20) + 1;
+                const num2 = Math.floor(Math.random() * 20) + 1;
+                const den1 = Math.floor(Math.random() * 10) + 2;
+                const den2 = Math.floor(Math.random() * 10) + 2;
+                
+                const exercise = document.createElement('div');
+                exercise.className = 'exercise';
+                exercise.innerHTML = `<strong>תרגיל ${i}:</strong> פתור את המשוואה \\\(\\frac{${num1}}{${den1}}x = \\frac{${num2}}{${den2}}\\\).`;
+                container.appendChild(exercise);
+            }
+        }
+
+        window.onload = generateExercises;
+    </script>
+</body>
+</html>
