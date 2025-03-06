@@ -11,6 +11,9 @@
         .exercise {
             margin-bottom: 20px;
         }
+        input[type="text"] {
+            width: 50px;
+        }
     </style>
 </head>
 <body>
@@ -25,11 +28,24 @@
                 const num2 = Math.floor(Math.random() * 20) + 1;
                 const den1 = Math.floor(Math.random() * 10) + 2;
                 const den2 = Math.floor(Math.random() * 10) + 2;
+                const solution = (num2 * den1) / (num1 * den2); // מחשבת את הפתרון למשוואה
                 
                 const exercise = document.createElement('div');
                 exercise.className = 'exercise';
-                exercise.innerHTML = `<strong>תרגיל ${i}:</strong> פתור את המשוואה \\\(\\frac{${num1}}{${den1}}x = \\frac{${num2}}{${den2}}\\\).`;
+                exercise.innerHTML = `<strong>תרגיל ${i}:</strong> פתור את המשוואה \\\(\\frac{${num1}}{${den1}}x = \\frac{${num2}}{${den2}}\\\)<br><input type='text' id='answer${i}'><button onclick='checkAnswer(${i}, ${solution.toFixed(2)})'>בדוק</button><span id='result${i}'></span>`;
                 container.appendChild(exercise);
+            }
+        }
+
+        function checkAnswer(exerciseId, correctAnswer) {
+            const userAnswer = document.getElementById('answer' + exerciseId).value;
+            const resultDisplay = document.getElementById('result' + exerciseId);
+            if (parseFloat(userAnswer).toFixed(2) === correctAnswer.toString()) {
+                resultDisplay.innerHTML = 'נכון!';
+                resultDisplay.style.color = 'green';
+            } else {
+                resultDisplay.innerHTML = 'לא נכון, נסה שוב.';
+                resultDisplay.style.color = 'red';
             }
         }
 
